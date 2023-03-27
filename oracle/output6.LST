@@ -1,0 +1,484 @@
+SQL> spool
+currently spooling to C:\Users\lenovo ideapad130\Downloads\Telegram Desktop\lab102\output6.LST
+SQL> conn univ/1234;
+Connected.
+SQL> select table_name from user_tables;
+
+TABLE_NAME                                                                      
+------------------------------                                                  
+CLASSROOM                                                                       
+DEPARTMENT                                                                      
+COURSE                                                                          
+INSTRUCTOR                                                                      
+SECTION                                                                         
+TEACHES                                                                         
+STUDENT                                                                         
+TAKES                                                                           
+ADVISOR                                                                         
+TIME_SLOT                                                                       
+PREREQ                                                                          
+
+11 rows selected.
+
+SQL> select * from STUDENT;
+
+ID    NAME                 DEPT_NAME              TOT_CRED                      
+----- -------------------- -------------------- ----------                      
+00128 Zhang                Comp. Sci.                  102                      
+12345 Shankar              Comp. Sci.                   32                      
+19991 Brandt               History                      80                      
+23121 Chavez               Finance                     110                      
+44553 Peltier              Physics                      56                      
+45678 Levy                 Physics                      46                      
+54321 Williams             Comp. Sci.                   54                      
+55739 Sanchez              Music                        38                      
+70557 Snow                 Physics                       0                      
+76543 Brown                Comp. Sci.                   58                      
+76653 Aoi                  Elec. Eng.                   60                      
+
+ID    NAME                 DEPT_NAME              TOT_CRED                      
+----- -------------------- -------------------- ----------                      
+98765 Bourikas             Elec. Eng.                   98                      
+98988 Tanaka               Biology                     120                      
+
+13 rows selected.
+
+SQL> Insert into STUDENT VALUES(00028,'raed','Comp. Sci.',0);
+
+1 row created.
+
+SQL> select * from STUDENT;
+
+ID    NAME                 DEPT_NAME              TOT_CRED                      
+----- -------------------- -------------------- ----------                      
+00128 Zhang                Comp. Sci.                  102                      
+12345 Shankar              Comp. Sci.                   32                      
+19991 Brandt               History                      80                      
+23121 Chavez               Finance                     110                      
+44553 Peltier              Physics                      56                      
+45678 Levy                 Physics                      46                      
+54321 Williams             Comp. Sci.                   54                      
+55739 Sanchez              Music                        38                      
+70557 Snow                 Physics                       0                      
+76543 Brown                Comp. Sci.                   58                      
+76653 Aoi                  Elec. Eng.                   60                      
+
+ID    NAME                 DEPT_NAME              TOT_CRED                      
+----- -------------------- -------------------- ----------                      
+98765 Bourikas             Elec. Eng.                   98                      
+98988 Tanaka               Biology                     120                      
+28    raed                 Comp. Sci.                    0                      
+
+14 rows selected.
+
+SQL> delete from STUDENT
+  2  WHERE ID =00028;
+
+1 row deleted.
+
+SQL> select * from STUDENT;
+
+ID    NAME                 DEPT_NAME              TOT_CRED                      
+----- -------------------- -------------------- ----------                      
+00128 Zhang                Comp. Sci.                  102                      
+12345 Shankar              Comp. Sci.                   32                      
+19991 Brandt               History                      80                      
+23121 Chavez               Finance                     110                      
+44553 Peltier              Physics                      56                      
+45678 Levy                 Physics                      46                      
+54321 Williams             Comp. Sci.                   54                      
+55739 Sanchez              Music                        38                      
+70557 Snow                 Physics                       0                      
+76543 Brown                Comp. Sci.                   58                      
+76653 Aoi                  Elec. Eng.                   60                      
+
+ID    NAME                 DEPT_NAME              TOT_CRED                      
+----- -------------------- -------------------- ----------                      
+98765 Bourikas             Elec. Eng.                   98                      
+98988 Tanaka               Biology                     120                      
+
+13 rows selected.
+
+SQL> select * from INSTRUCTOR;
+
+ID    NAME                 DEPT_NAME                SALARY                      
+----- -------------------- -------------------- ----------                      
+10101 Srinivasan           Comp. Sci.                65000                      
+12121 Wu                   Finance                   90000                      
+15151 Mozart               Music                     40000                      
+22222 Einstein             Physics                   95000                      
+32343 El Said              History                   60000                      
+33456 Gold                 Physics                   87000                      
+45565 Katz                 Comp. Sci.                75000                      
+58583 Califieri            History                   62000                      
+76543 Singh                Finance                   80000                      
+76766 Crick                Biology                   72000                      
+83821 Brandt               Comp. Sci.                92000                      
+
+ID    NAME                 DEPT_NAME                SALARY                      
+----- -------------------- -------------------- ----------                      
+98345 Kim                  Elec. Eng.                80000                      
+
+12 rows selected.
+
+SQL> select * from INSTRUCTOR
+  2  where DEPT_NAME ='Biology';
+
+ID    NAME                 DEPT_NAME                SALARY                      
+----- -------------------- -------------------- ----------                      
+76766 Crick                Biology                   72000                      
+
+SQL> select NAME from INSTRUCTOR
+  2  where DEPT_NAME ='Biology';
+
+NAME                                                                            
+--------------------                                                            
+Crick                                                                           
+
+SQL> select * from COURSE;
+
+COURSE_I TITLE                                              DEPT_NAME           
+-------- -------------------------------------------------- --------------------
+   CREDITS                                                                      
+----------                                                                      
+BIO-101  Intro. to Biology                                  Biology             
+         4                                                                      
+                                                                                
+BIO-301  Genetics                                           Biology             
+         4                                                                      
+                                                                                
+BIO-399  Computational Biology                              Biology             
+         3                                                                      
+                                                                                
+
+COURSE_I TITLE                                              DEPT_NAME           
+-------- -------------------------------------------------- --------------------
+   CREDITS                                                                      
+----------                                                                      
+CS-101   Intro. to Computer Science                         Comp. Sci.          
+         4                                                                      
+                                                                                
+CS-190   Game Design                                        Comp. Sci.          
+         4                                                                      
+                                                                                
+CS-315   Robotics                                           Comp. Sci.          
+         3                                                                      
+                                                                                
+
+COURSE_I TITLE                                              DEPT_NAME           
+-------- -------------------------------------------------- --------------------
+   CREDITS                                                                      
+----------                                                                      
+CS-319   Image Processing                                   Comp. Sci.          
+         3                                                                      
+                                                                                
+CS-347   Database System Concepts                           Comp. Sci.          
+         3                                                                      
+                                                                                
+EE-181   Intro. to Digital Systems                          Elec. Eng.          
+         3                                                                      
+                                                                                
+
+COURSE_I TITLE                                              DEPT_NAME           
+-------- -------------------------------------------------- --------------------
+   CREDITS                                                                      
+----------                                                                      
+FIN-201  Investment Banking                                 Finance             
+         3                                                                      
+                                                                                
+HIS-351  World History                                      History             
+         3                                                                      
+                                                                                
+MU-199   Music Video Production                             Music               
+         3                                                                      
+                                                                                
+
+COURSE_I TITLE                                              DEPT_NAME           
+-------- -------------------------------------------------- --------------------
+   CREDITS                                                                      
+----------                                                                      
+PHY-101  Physical Principles                                Physics             
+         4                                                                      
+                                                                                
+
+13 rows selected.
+
+SQL> select NAME from COURSE
+  2  where DEPT_NAME='Comp. Sci.' and CREDITS=3;
+select NAME from COURSE
+       *
+ERROR at line 1:
+ORA-00904: "NAME": invalid identifier 
+
+
+SQL> select TITLE from COURSE
+  2  where DEPT_NAME='Comp. Sci.' and CREDITS=3;
+
+TITLE                                                                           
+--------------------------------------------------                              
+Robotics                                                                        
+Image Processing                                                                
+Database System Concepts                                                        
+
+SQL> select * from STUDENT;
+
+ID    NAME                 DEPT_NAME              TOT_CRED                      
+----- -------------------- -------------------- ----------                      
+00128 Zhang                Comp. Sci.                  102                      
+12345 Shankar              Comp. Sci.                   32                      
+19991 Brandt               History                      80                      
+23121 Chavez               Finance                     110                      
+44553 Peltier              Physics                      56                      
+45678 Levy                 Physics                      46                      
+54321 Williams             Comp. Sci.                   54                      
+55739 Sanchez              Music                        38                      
+70557 Snow                 Physics                       0                      
+76543 Brown                Comp. Sci.                   58                      
+76653 Aoi                  Elec. Eng.                   60                      
+
+ID    NAME                 DEPT_NAME              TOT_CRED                      
+----- -------------------- -------------------- ----------                      
+98765 Bourikas             Elec. Eng.                   98                      
+98988 Tanaka               Biology                     120                      
+
+13 rows selected.
+
+SQL> select * from TAKES;
+
+ID    COURSE_I SEC_ID   SEMEST       YEAR GR                                    
+----- -------- -------- ------ ---------- --                                    
+00128 CS-101   1        Fall         2017 A                                     
+00128 CS-347   1        Fall         2017 A-                                    
+12345 CS-101   1        Fall         2017 C                                     
+12345 CS-190   2        Spring       2017 A                                     
+12345 CS-315   1        Spring       2018 A                                     
+12345 CS-347   1        Fall         2017 A                                     
+19991 HIS-351  1        Spring       2018 B                                     
+23121 FIN-201  1        Spring       2018 C+                                    
+44553 PHY-101  1        Fall         2017 B-                                    
+45678 CS-101   1        Fall         2017 F                                     
+45678 CS-101   1        Spring       2018 B+                                    
+
+ID    COURSE_I SEC_ID   SEMEST       YEAR GR                                    
+----- -------- -------- ------ ---------- --                                    
+45678 CS-319   1        Spring       2018 B                                     
+54321 CS-101   1        Fall         2017 A-                                    
+54321 CS-190   2        Spring       2017 B+                                    
+55739 MU-199   1        Spring       2018 A-                                    
+76543 CS-101   1        Fall         2017 A                                     
+76543 CS-319   2        Spring       2018 A                                     
+76653 EE-181   1        Spring       2017 C                                     
+98765 CS-101   1        Fall         2017 C-                                    
+98765 CS-315   1        Spring       2018 B                                     
+98988 BIO-101  1        Summer       2017 A                                     
+98988 BIO-301  1        Summer       2018                                       
+
+22 rows selected.
+
+SQL> select * from CLASSROOM;
+
+BUILDING        ROOM_NU   CAPACITY                                              
+--------------- ------- ----------                                              
+Packard         101            500                                              
+Painter         514             10                                              
+Taylor          3128            70                                              
+Watson          100             30                                              
+Watson          120             50                                              
+
+SQL> select COURSE_ID from TAKES;
+
+COURSE_I                                                                        
+--------                                                                        
+CS-101                                                                          
+CS-347                                                                          
+CS-101                                                                          
+CS-190                                                                          
+CS-315                                                                          
+CS-347                                                                          
+HIS-351                                                                         
+FIN-201                                                                         
+PHY-101                                                                         
+CS-101                                                                          
+CS-101                                                                          
+
+COURSE_I                                                                        
+--------                                                                        
+CS-319                                                                          
+CS-101                                                                          
+CS-190                                                                          
+MU-199                                                                          
+CS-101                                                                          
+CS-319                                                                          
+EE-181                                                                          
+CS-101                                                                          
+CS-315                                                                          
+BIO-101                                                                         
+BIO-301                                                                         
+
+22 rows selected.
+
+SQL> select COURSE_ID ,TITLE from TAKES FULL OUTER JOIN COURSE on TAKES.COURSE_ID=COURSE.COURSE_ID where ID = 12345;
+select COURSE_ID ,TITLE from TAKES FULL OUTER JOIN COURSE on TAKES.COURSE_ID=COURSE.COURSE_ID where ID = 12345
+       *
+ERROR at line 1:
+ORA-00918: column ambiguously defined 
+
+
+SQL> select TAKES.COURSE_ID ,COURSE.TITLE from TAKES FULL OUTER JOIN COURSE on TAKES.COURSE_ID=COURSE.COURSE_ID where ID = 12345;
+
+COURSE_I TITLE                                                                  
+-------- --------------------------------------------------                     
+CS-101   Intro. to Computer Science                                             
+CS-190   Game Design                                                            
+CS-315   Robotics                                                               
+CS-347   Database System Concepts                                               
+
+SQL> select TAKES.ID,TAKES.COURSE_ID ,COURSE.TITLE from TAKES FULL OUTER JOIN COURSE on TAKES.COURSE_ID=COURSE.COURSE_ID
+  2  where ID =12345;
+
+ID    COURSE_I TITLE                                                            
+----- -------- --------------------------------------------------               
+12345 CS-101   Intro. to Computer Science                                       
+12345 CS-190   Game Design                                                      
+12345 CS-315   Robotics                                                         
+12345 CS-347   Database System Concepts                                         
+
+SQL> select DISTINCT STUDENT.NAME,TAKES.ID,TAKES.COURSE_ID ,COURSE.TITLE from TAKES FULL OUTER JOIN STUDENT on TAKES.ID=STUDENT.ID
+  2  where COURSE_ID like 'CS%';
+select DISTINCT STUDENT.NAME,TAKES.ID,TAKES.COURSE_ID ,COURSE.TITLE from TAKES FULL OUTER JOIN STUDENT on TAKES.ID=STUDENT.ID
+                                                       *
+ERROR at line 1:
+ORA-00904: "COURSE"."TITLE": invalid identifier 
+
+
+SQL> select DISTINCT STUDENT.NAME,TAKES.ID,TAKES.COURSE_ID
+  2  from TAKES FULL OUTER JOIN STUDENT on TAKES.ID=STUDENT.ID
+  3  where COURSE_ID like 'CS%';
+
+NAME                 ID    COURSE_I                                             
+-------------------- ----- --------                                             
+Shankar              12345 CS-190                                               
+Levy                 45678 CS-101                                               
+Brown                76543 CS-101                                               
+Bourikas             98765 CS-101                                               
+Bourikas             98765 CS-315                                               
+Shankar              12345 CS-101                                               
+Shankar              12345 CS-315                                               
+Zhang                00128 CS-101                                               
+Williams             54321 CS-101                                               
+Williams             54321 CS-190                                               
+Shankar              12345 CS-347                                               
+
+NAME                 ID    COURSE_I                                             
+-------------------- ----- --------                                             
+Brown                76543 CS-319                                               
+Levy                 45678 CS-319                                               
+Zhang                00128 CS-347                                               
+
+14 rows selected.
+
+SQL> select * from instructor;
+
+ID    NAME                 DEPT_NAME                SALARY                      
+----- -------------------- -------------------- ----------                      
+10101 Srinivasan           Comp. Sci.                65000                      
+12121 Wu                   Finance                   90000                      
+15151 Mozart               Music                     40000                      
+22222 Einstein             Physics                   95000                      
+32343 El Said              History                   60000                      
+33456 Gold                 Physics                   87000                      
+45565 Katz                 Comp. Sci.                75000                      
+58583 Califieri            History                   62000                      
+76543 Singh                Finance                   80000                      
+76766 Crick                Biology                   72000                      
+83821 Brandt               Comp. Sci.                92000                      
+
+ID    NAME                 DEPT_NAME                SALARY                      
+----- -------------------- -------------------- ----------                      
+98345 Kim                  Elec. Eng.                80000                      
+
+12 rows selected.
+
+SQL> select * from teaches;
+
+ID    COURSE_I SEC_ID   SEMEST       YEAR                                       
+----- -------- -------- ------ ----------                                       
+10101 CS-101   1        Fall         2017                                       
+10101 CS-315   1        Spring       2018                                       
+10101 CS-347   1        Fall         2017                                       
+12121 FIN-201  1        Spring       2018                                       
+15151 MU-199   1        Spring       2018                                       
+22222 PHY-101  1        Fall         2017                                       
+32343 HIS-351  1        Spring       2018                                       
+45565 CS-101   1        Spring       2018                                       
+45565 CS-319   1        Spring       2018                                       
+76766 BIO-101  1        Summer       2017                                       
+76766 BIO-301  1        Summer       2018                                       
+
+ID    COURSE_I SEC_ID   SEMEST       YEAR                                       
+----- -------- -------- ------ ----------                                       
+83821 CS-190   1        Spring       2017                                       
+83821 CS-190   2        Spring       2017                                       
+83821 CS-319   2        Spring       2018                                       
+98345 EE-181   1        Spring       2017                                       
+
+15 rows selected.
+
+SQL> SELECT instructor_id from instructor
+  2  MINUS
+  3  ed
+  4  ;
+ed
+*
+ERROR at line 3:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> SELECT ID from instructor
+  2  MINUS
+  3  SELECT ID from teaches;
+
+ID                                                                              
+-----                                                                           
+33456                                                                           
+58583                                                                           
+76543                                                                           
+
+SQL> SELECT ID ,NAME from instructor
+  2  MINUS
+  3  SELECT ID from teaches;
+SELECT ID ,NAME from instructor
+*
+ERROR at line 1:
+ORA-01789: query block has incorrect number of result columns 
+
+
+SQL> SELECT instructor.ID ,instructor.NAME from instructor MINUS SELECT teaches.ID from teaches;
+SELECT instructor.ID ,instructor.NAME from instructor MINUS SELECT teaches.ID from teaches
+*
+ERROR at line 1:
+ORA-01789: query block has incorrect number of result columns 
+
+
+SQL> SELECT NAME from instructor
+  2  WHERE ID MINUS
+  3  SELECT ID from teaches;
+WHERE ID MINUS
+         *
+ERROR at line 2:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT name
+  2  FROM instructor
+  3  WHERE id NOT IN
+  4    (SELECT id
+  5     FROM teaches);
+
+NAME                                                                            
+--------------------                                                            
+Gold                                                                            
+Califieri                                                                       
+Singh                                                                           
+
+SQL> spool off ;
